@@ -1,0 +1,142 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block content%}
+
+<style>
+    .custom-position {
+        top: 60%;  /* You can change this to px, rem, etc. */
+        left: 60%;
+    }
+    .btn-custom {
+        color: black;
+        border-color: black;
+        background-color: transparent;
+        transition: 0.3s;
+    }
+
+    .btn-custom:hover {
+        background-color: black;
+        color: white;
+    }
+
+.cus-container{
+    display:flex ;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    
+}
+.cus-container .box1{
+    display:flex ;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    
+}
+.cus-container .box1 .column1{
+    display:flex ;
+    flex-direction: column;
+    width: 32.5%;
+    gap: 10px; 
+    
+}
+.cus-container .box1 .column1 .img{
+    width: 100%; /* Ensures images fit within columns */
+    height: auto; /* Keeps aspect ratio */
+    max-height: 250px; /* Limits image height to avoid overflow */
+    object-fit: cover; /* Crops images nicely */
+    border-radius: 10px;
+    
+}
+.card {
+        transition: transform 0.3s ease, filter 0.3s ease;
+}
+.card:hover {
+        transform: scale(1.05);
+        filter: brightness(0.7);
+}
+
+
+
+</style>
+
+
+<div class=" position-relative">
+    <img src="{%static 'images\vivek-kumar-JS_ohjocm00-unsplash.jpg' %}" class="w-100 vh-100" style="object-fit: cover;" alt="">
+    <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0, 0, 0, 0.5);"></div>
+    <div class="maincontent position-absolute top-50 start-50 translate-middle text-center text-white">
+        <h1>Tea Shop</h1>
+        <button class="btn btn-outline-light ">About Us</button>
+    </div>
+</div>
+
+<div class="container  w-100 border-top" >
+    <div class="row gx-5 align-items-center  mt-5" style="min-height: 550px;">
+        <div class="col position-relative d-flex justify-content-center">
+            <div class="position-relative">
+                <img src="{%static 'images\teacora-rooibos-FnTWsBohkdo-unsplash.jpg' %}" class="rounded shadow" width="400" height="460">
+                <img src="{%static 'images\nathan-dumlao-8yBQQqH3q8Q-unsplash.jpg' %}" class="position-absolute rounded custom-position shadow" width="200" height="230">
+            </div>
+        </div>
+    <div class="col d-flex flex-column align-items-center justify-content-center"style="min-height: 550px;">
+        <div class="text-center  w-100 " style="max-width: 400px;">
+        <h3>Our Product</h3>
+        <p class="d-flex justify-content-center">Discover the finest Sri Lankan tea, delivered to your doorstep – shop premium tea dust and loose-leaf varieties with ease!</p>
+        <a href="{%url 'menu'%}">
+        <button class="btn btn-outline-light btn-custom ">Menu</button>
+        </a>
+    </div>
+    </div>
+    </div>
+</div>
+<div class="container mt-5 border-top">
+<div class="topic text-center">
+    <h3>Our Favorite</h3>
+</div>
+<div class="row mt-5 justify-content-center" >
+    {%for ftea in favtea%}
+    <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center">
+        <a href="{% url 'teadetail' ftea.id %}"style="text-decoration: none;">
+        <div class="card text-center shadow" style="width: 375px;height: 475px;">
+            <img src="{{ftea.image.url}}"style="height: 400px;object-fit: cover;"class="card-img-top" alt="">
+            <div class="title text-center">
+                <h5>{{ftea.name}}</h5>
+            </div>
+        </div>
+        </a>
+
+    </div>
+    {%endfor%}
+
+</div>
+
+</div>
+<div class="cus-container mt-5 border-top">
+    <div class="heading">
+        <h3>Gallery</h3>
+    </div> 
+    <div class="box1 mt-5">
+        <div class="column1">
+            <img src="{% static 'galery/angela-bailey-yQQW7WUw_Yc-unsplash.jpg' %}" class="" alt="">
+            <img src="{% static 'galery/angela-lo-ISE4D6Z79FY-unsplash.jpg' %}" class="" alt="">
+            <img src="{% static 'galery/ewien-van-bergeijk-kwant-MxHZsxjkJ8I-unsplash.jpg' %}" class="" alt="">
+            <img src="{% static 'galery\petr-sevcovic-qE1jxYXiwOA-unsplash.jpg' %}" class="" alt="">
+        </div>
+        <div class="column1">
+            <img src="{% static 'galery/matthew-henry-kZzYRiZcwTw-unsplash.jpg' %}" class="" alt="">
+            <img src="{% static 'galery/micheile-henderson-EOJqV9lZNDk-unsplash.jpg' %}" class="" alt="">
+            <img src="{% static 'galery/nathan-dumlao-pMW4jzELQCw-unsplash.jpg' %}" class="" alt="">
+        </div>
+        <div class="column1">
+            <img src="{% static 'galery/nur-athirah-hamzah-5hGva354WQE-unsplash.jpg' %}" class="" alt="">
+            <img src="{% static 'galery/randy-fath-_ilGMlk2Ih4-unsplash.jpg' %}" class="" alt="">
+            <img src="{% static 'galery/tamara-malaniy-A4zCoa8800U-unsplash.jpg' %}" class="" alt="">
+        </div>
+        
+        </div>
+    </div>   
+</div>
+
+{%endblock%}    

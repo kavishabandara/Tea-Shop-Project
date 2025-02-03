@@ -1,0 +1,83 @@
+{%extends 'base.html'%}
+{%block content%}
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Select all decrease, increase buttons and quantity spans
+    const decreaseButtons = document.querySelectorAll('.decrease');
+    const increaseButtons = document.querySelectorAll('.increase');
+    const quantitySpans = document.querySelectorAll('.quantity');
+
+    // Loop through each button and attach the event listeners
+    decreaseButtons.forEach((decreaseButton, index) => {
+        const quantitySpan = quantitySpans[index];  // Get the corresponding quantity span
+        let quantity = parseInt(quantitySpan.innerText);  // Initialize the quantity from the current value
+
+        // Attach the click event for decrease button
+        decreaseButton.addEventListener('click', function () {
+            // Ensure quantity doesn't go below 0
+            if (quantity > 0) {
+                quantity--;  // Decrease the quantity
+                quantitySpan.innerText = quantity;  // Update the UI
+            }
+            console.log('Decreased quantity:', quantity); // Log the quantity after decrease
+        });
+    });
+
+    increaseButtons.forEach((increaseButton, index) => {
+        const quantitySpan = quantitySpans[index];  // Get the corresponding quantity span
+        let quantity = parseInt(quantitySpan.innerText);  // Initialize the quantity from the current value
+
+        // Attach the click event for increase button
+        increaseButton.addEventListener('click', function () {
+            quantity++;  // Increase the quantity
+            quantitySpan.innerText = quantity;  // Update the UI
+            console.log('Increased quantity:', quantity); // Log the quantity after increase
+        });
+    });
+});
+
+
+
+
+</script>
+<div class="container mt-5 pt-5">
+<div class="row">
+    <div class="col d-flex justify-content-center">
+        <img src="{{teap.image.url}}" class="rounded shadow" style="width: 325px;height: 425px;object-fit: cover;">
+    </div>
+    <div class="col  ">
+        <div class="h3">
+            {{teap.name}}
+        </div>
+        <div class="star">
+
+        </div>
+        <div class="des">
+            {{teap.description}}
+        </div>
+        <div class="varient">git
+           {%for vari in variants%}
+            <div class="row text-center mt-3">
+            <div class="col price">
+                <div class="btn btn-outline-secondary container-fluid">{{vari}}</div>
+            </div>
+            <div class=" col ">
+                <button class="p-2 btn btn-outline-primary decrease">-</button>
+                <span class="p-2 quantity h6">0</span>
+                <button class="p-2 btn btn-outline-primary increase">+</button>
+            </div>   
+            </div>
+            {%endfor%}
+            <div class="row btndiv text-center mt-5">
+                <div class="col cartbtn ">
+                    <button class="btn btn-primary container-fluid">Add to Cart</button>
+                </div>
+                <div class="col buybtn">
+                    <button class="btn btn-primary container-fluid">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{%endblock%}

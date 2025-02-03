@@ -1,0 +1,32 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block content%}
+<style>
+    .card {
+        transition: transform 0.3s ease, filter 0.3s ease;
+    }
+    .card:hover {
+        transform: scale(1.05);
+        filter: brightness(0.7);
+    }
+</style>
+<div class="container mt-5 pt-5 ">
+    <div class="row justify-content-center">
+        {%for tea in tealist%}
+        <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center">
+            <a href="{% url 'teadetail' tea.id %}"style="text-decoration: none;">
+            <div class="card text-center shadow mt-5" style="width: 375px;height: 475px;">
+                <img src="{{tea.image.url}}" class="card-img-top" style="height: 400px;object-fit: cover;"alt="">
+                <h5 class="mt-3">{{tea.name}}</h5>
+            </div> 
+        </a>   
+        </div>
+    
+    {%empty%}
+    <p>No teas available.</p>
+{%endfor%}
+</div>
+</div>
+
+
+{%endblock%}
