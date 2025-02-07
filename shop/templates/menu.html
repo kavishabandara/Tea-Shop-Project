@@ -9,6 +9,12 @@
         transform: scale(1.05);
         filter: brightness(0.7);
     }
+    @media (max-width: 768px) {
+    .card {
+        max-width: 90% !important; /* Limit width to 90% of screen */
+        margin: auto; /* Maintain aspect ratio */
+    }
+}
 </style>
 <div class="container mt-5 pt-5 ">
     <div class="row justify-content-center">

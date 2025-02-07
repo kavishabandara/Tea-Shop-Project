@@ -3,21 +3,43 @@
 {%block content%}
 
 <style>
-    .custom-position {
-        top: 60%;  /* You can change this to px, rem, etc. */
-        left: 60%;
-    }
-    .btn-custom {
-        color: black;
-        border-color: black;
-        background-color: transparent;
-        transition: 0.3s;
+@media (max-width: 768px) {
+    .col-sm img {
+        max-width: 80% !important; /* Reduce main image size */
+        height: auto;
     }
 
-    .btn-custom:hover {
-        background-color: black;
-        color: white;
+    .custom-position {
+        width: 40% !important; /* Reduce small image size */
+        top: 90% !important;  /* Adjust positioning */
+        left: 80% !important; /* Keep similar relative position */
+        transform: translate(-50%, -50%);
     }
+}
+@media (max-width: 768px) {
+    .card {
+        max-width: 90% !important; /* Limit width to 90% of screen */
+        margin: auto; /* Maintain aspect ratio */
+    }
+}
+
+
+
+.custom-position {
+    top: 60%; 
+    left: 60%;
+}
+.btn-custom {
+    color: black;
+    border-color: black;
+    background-color: transparent;
+    transition: 0.3s;
+}
+
+.btn-custom:hover {
+    background-color: black;
+    color: white;
+}
 
 .cus-container{
     display:flex ;
@@ -68,16 +90,16 @@
     <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0, 0, 0, 0.5);"></div>
     <div class="maincontent position-absolute top-50 start-50 translate-middle text-center text-white">
         <h1>Tea Shop</h1>
-        <button class="btn btn-outline-light ">About Us</button>
+        <a href="{%url 'aboutus'%}"><button class="btn btn-outline-light ">About Us</button></a>
     </div>
 </div>
 
-<div class="container  w-100 border-top" >
+<div class="container  w-100 border-top " style="margin-bottom: 100px;">
     <div class="row gx-5 align-items-center  mt-5" style="min-height: 550px;">
-        <div class="col position-relative d-flex justify-content-center">
+        <div class="col-sm position-relative d-flex justify-content-center">
             <div class="position-relative">
-                <img src="{%static 'images\teacora-rooibos-FnTWsBohkdo-unsplash.jpg' %}" class="rounded shadow" width="400" height="460">
-                <img src="{%static 'images\nathan-dumlao-8yBQQqH3q8Q-unsplash.jpg' %}" class="position-absolute rounded custom-position shadow" width="200" height="230">
+                <img src="{%static 'images\teacora-rooibos-FnTWsBohkdo-unsplash.jpg' %}" class="rounded shadow img-fluid" style="max-width: 400px; height: auto;">
+                <img src="{%static 'images\nathan-dumlao-8yBQQqH3q8Q-unsplash.jpg' %}" class="position-absolute rounded img-fluid custom-position shadow"style="max-width: 200px; height: auto;">
             </div>
         </div>
     <div class="col d-flex flex-column align-items-center justify-content-center"style="min-height: 550px;">
@@ -91,7 +113,7 @@
     </div>
     </div>
 </div>
-<div class="container mt-5 border-top">
+<div class="container border-top mt-5 ">
 <div class="topic text-center">
     <h3>Our Favorite</h3>
 </div>
@@ -99,7 +121,7 @@
     {%for ftea in favtea%}
     <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center">
         <a href="{% url 'teadetail' ftea.id %}"style="text-decoration: none;">
-        <div class="card text-center shadow" style="width: 375px;height: 475px;">
+        <div class="card text-center shadow mt-5" style="width: 375px;height: 475px;">
             <img src="{{ftea.image.url}}"style="height: 400px;object-fit: cover;"class="card-img-top" alt="">
             <div class="title text-center">
                 <h5>{{ftea.name}}</h5>

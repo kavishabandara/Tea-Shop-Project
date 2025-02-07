@@ -21,3 +21,9 @@ def teadetail(request,tea_id):
         'variants': variants
 
     })
+def aboutus(request):
+    return render (request,'aboutus.html')
+def loca(request):
+    return render (request,'location.html')
+def thank(request):
+    return render (request,'thanks.html')

@@ -69,22 +69,22 @@
                 <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{%url 'home'%}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {% if request.resolver_match.url_name == 'menu' %}active{% endif %}" href="{%url 'menu'%}">Buy Now</a>
+                <a class="nav-link {% if request.resolver_match.url_name == 'menu' %}active{% endif %}" href="{%url 'menu'%}">Products</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">About Us</a>
+                <a class="nav-link {% if request.resolver_match.url_name == 'aboutus' %}active{% endif %}" href="{%url 'aboutus'%}">About Us</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Shops</a>
+                <a class="nav-link {% if request.resolver_match.url_name == 'loca' %}active{% endif %}" href="{%url 'loca'%}">Shops</a>
               </li>
             </ul>
            </div> 
             <div class="d-flex align-items-center gap-2"> 
-            <a href="#" class="nav-link">
+            <a href="{%url 'thank'%}" class="nav-link">
                 <img src="{%static 'images\free-user-icon-3296-thumb.png'%}" alt="User" width="30" height="30">
             </a>
-            <a href="#" class="nav-link">
-                <img src="{%static 'images\free-add-to-cart-icon-3046-thumb.png'%}" alt="Cart" width="30" height="30">
+            <a href="{%url 'thank'%}" class="nav-link">
+                <img src="{%static 'images\free-add-to-cart-icon-3046-thumb.png'%}" alt="Cart" width="30" height="30" class="me-2">
             </a>
         </div>
            
@@ -114,17 +114,26 @@
                       <li class="nav-item mb-2 text-white">Instagram</li>
                       <li class="nav-item mb-2 text-white">Linkedin</li>
                       <li class="nav-item mb-2 text-white">X</li>
-                      <li class="nav-item mb-2 text-white">Youtube</li>
+                      <li class="nav-item mb-2 text-white ">Youtube</li>
                   </ul>
               </div>
   
               <div class="col mb-3 justify-content-end text-center">
-                  <ul class="nav flex-column">
-                      <li class="nav-item mb-2 text-white">Home</li>
-                      <li class="nav-item mb-2 text-white">Buy Now</li>
-                      <li class="nav-item mb-2 text-white">About Us</li>
-                      <li class="nav-item mb-2 text-white">Shops</li>
-                  </ul>
+                <ul class="nav flex-column">
+                  <li class=" footerlink" >
+                      <a class="nav-link text-white" style="padding: 0px;"  href="{% url 'home' %}">Home</a>
+                  </li>
+                  <li class=" footerlink">
+                      <a class="nav-link text-white " style="padding: 10px;" href="{% url 'menu' %}">Products</a>
+                  </li>
+                  <li class=" footerlink">
+                      <a class="nav-link text-white " style="padding: 0px;" href="{% url 'aboutus' %}">About Us</a>
+                  </li>
+                  <li class="footerlink ">
+                      <a class="nav-link text-white" style="padding: 10px;" href="{% url 'loca' %}">Shop</a>
+                  </li>
+              </ul>
+              
               </div>
   
           </footer>

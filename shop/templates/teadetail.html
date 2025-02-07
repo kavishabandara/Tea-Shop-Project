@@ -1,5 +1,6 @@
 {%extends 'base.html'%}
 {%block content%}
+{%load static%}
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     // Select all decrease, increase buttons and quantity spans
@@ -35,18 +36,58 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+document.addEventListener("DOMContentLoaded", function () {
+    // Select all the variant buttons
+    const variantButtons = document.querySelectorAll('.variant-btn');
 
+    // Loop through each button and add the click event listener
+    variantButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            // Toggle the 'selected' class on the clicked button
+            button.classList.toggle('selected');
+            
+            // Log the selected variants (buttons with 'selected' class)
+            const selectedVariants = [...variantButtons]
+                .filter(btn => btn.classList.contains('selected'))
+                .map(btn => btn.innerText);
+            console.log('Selected variants:', selectedVariants);
+        });
+    });
+});
 
 
 
 </script>
+<style>
+.card {
+    position: relative;
+    border-radius: 40px;
+    background: rgba(170, 169, 169, 0.1); 
+    backdrop-filter: blur(10px); 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+@media (max-width: 768px) {
+    .h3 {
+        margin-top: 15px; /* Adds space between the image and the name */
+    }
+}
+@media (max-width: 768px) {
+    .card {
+        margin-top: 15px; /* Adds space between the image and the name */
+    }
+}
+.variant-btn.selected {
+    background-color: #959595;
+    color: white;
+}
+</style>
 <div class="container mt-5 pt-5">
 <div class="row">
     <div class="col d-flex justify-content-center">
         <img src="{{teap.image.url}}" class="rounded shadow" style="width: 325px;height: 425px;object-fit: cover;">
     </div>
     <div class="col  ">
-        <div class="h3">
+        <div class="h3 ">
             {{teap.name}}
         </div>
         <div class="star">
@@ -55,11 +96,11 @@ document.addEventListener("DOMContentLoaded", function () {
         <div class="des">
             {{teap.description}}
         </div>
-        <div class="varient">git
+        <div class="varient">
            {%for vari in variants%}
             <div class="row text-center mt-3">
             <div class="col price">
-                <div class="btn btn-outline-secondary container-fluid">{{vari}}</div>
+                <div class="btn btn-outline-secondary container-fluid variant-btn">{{vari}}</div>
             </div>
             <div class=" col ">
                 <button class="p-2 btn btn-outline-primary decrease">-</button>
@@ -70,14 +111,95 @@ document.addEventListener("DOMContentLoaded", function () {
             {%endfor%}
             <div class="row btndiv text-center mt-5">
                 <div class="col cartbtn ">
-                    <button class="btn btn-primary container-fluid">Add to Cart</button>
+                    <a href="{%url 'thank'%}"><button class="btn btn-primary container-fluid">Add to Cart</button></a>
                 </div>
                 <div class="col buybtn">
-                    <button class="btn btn-primary container-fluid">Buy Now</button>
+                    <a href="{%url 'thank'%}"><button class="btn btn-primary container-fluid">Buy Now</button></a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+</div>
+<div class="container mt-5">
+    <div class="title text-center h3">
+        Customer Reviews
+    </div>
+    <div class="row mt-5 ">
+        <div class="col d-flex justify-content-center ">
+            <div class="card " style="width: 300px; height:auto;">
+                <div class=" row top mt-2">
+                    <div class="col  col-auto">
+                    <img src="{%static '\images\alexander-hipp-iEEBWgY_6lA-unsplash.jpg' /%}" class=" rounded-circle ms-2 " style="width: 78px; height: 78px;">
+                    </div>
+                    <div class="n&s col d-flex flex-column justify-content-start ">
+                        <div class="name h5 mb-0">
+                            Kavisha Bandara
+                        </div>
+                        <div class="star" style="color: gold;font-size: 18px;">
+                            <span class="star-icon">&#9733;</span>
+                            <span class="star-icon">&#9733;</span>
+                            <span class="star-icon">&#9733;</span>
+                            <span class="star-icon">&#9733;</span>
+                            <span class="star-icon">&#9734;</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="cmt ms-2 mt-3 pb-2"style="text-align: justify;padding: 10px;">
+                    Great tea! Loved the taste and quality.
+                </div>
+            </div>
+        </div>
+        <div class="col col d-flex justify-content-center ">
+            <div class="card  " style="width: 300px; height:auto;;">
+                <div class=" row top mt-2">
+                    <div class="col  col-auto">
+                    <img src="{%static 'images\alex-suprun-ZHvM3XIOHoE-unsplash.jpg' /%}" class=" rounded-circle ms-2 " style="width: 78px; height: 78px;">
+                    </div>
+                    <div class="n&s col d-flex flex-column justify-content-start ">
+                        <div class="name h5 mb-0">
+                            Oshada danidu
+                        </div>
+                        <div class="star" style="color: gold;font-size: 18px;">
+                            <span class="star-icon">&#9733;</span>
+                            <span class="star-icon">&#9733;</span>
+                            <span class="star-icon">&#9733;</span>
+                            <span class="star-icon">&#9733;</span>
+                            <span class="star-icon">&#9733;</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="cmt ms-2 mt-3 pb-2"style="text-align: justify;padding: 10px;">
+                    I recently tried this tea, and I must say it's one of the best I've had!.
+                </div>
+            </div>
+        </div>
+        <div class="col col d-flex justify-content-center">
+            <div class="card  " style="width: 300px; height:auto;">
+                <div class=" row top mt-2">
+                    <div class="col  col-auto">
+                    <img src="{%static 'images\michael-dam-mEZ3PoFGs_k-unsplash.jpg' /%}" class=" rounded-circle ms-2 " style="object-fit: cover; width: 78px; height: 78px;">
+                    </div>
+                    <div class="n&s col d-flex flex-column justify-content-start ">
+                        <div class="name h5 mb-0">
+                            Siwmini F'do
+                        </div>
+                        <div class="star" style="color: gold;font-size: 18px;">
+                            <span class="star-icon">&#9733;</span>
+                            <span class="star-icon">&#9733;</span>
+                            <span class="star-icon">&#9733;</span>
+                            <span class="star-icon">&#9733;</span>
+                            <span class="star-icon">&#9734;</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="cmt ms-2 mt-3 pb-2 text-justify"style="text-align: justify;padding: 10px;">
+                    This tea exceeded my expectations in every way. The flavor is rich and full-bodied without being overpowering.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="readmore text-center mt-5"><a href="#" >Read More Reviews</a></div>
+    
 </div>
 {%endblock%}

@@ -1,0 +1,10 @@
+{%extends 'base.html'%}
+{%block content%}
+{%load static%}
+<div class="container text-center mt-5 pt-5 d-flex flex-column align-items-center">
+    <h1 class="display-4 text-success">Thank You for Your Purchase!</h1>
+    <img src="{% static 'images/14025690.png' %}" alt="Thank You" class="img-fluid mt-4" style="max-width: 300px;">
+    <a href="{% url 'home' %}" class="btn btn-primary btn-lg mt-5">Return to Homepage</a>
+</div>
+
+{%endblock%}
